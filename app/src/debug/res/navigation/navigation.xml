@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menu_fragment">
+
+    <fragment
+        android:id="@+id/map_fragment"
+        android:label="MapFragment"
+        android:name="com.example.borrar.fragments.MapFragment"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/black_fragment"
+        android:label="BlackFragment"
+        android:name="com.example.borrar.fragments.BlankFragment"
+        tools:layout="@layout/fragment_blank" />
+
+    <fragment
+        android:id="@+id/menu_fragment"
+        android:label="MenuFragment"
+        android:name="com.example.borrar.fragments.MenuFragment"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/movies_fragment"
+        android:label="MoviesFragment"
+        android:name="com.example.borrar.fragments.MoviesFragment"
+        tools:layout="@layout/fragment_movies" />
+
+    <fragment
+        android:id="@+id/film_details_fragment"
+        android:label="filmDetailsFragment"
+        android:name="com.example.borrar.fragments.FilmDetailsFragment"
+        tools:layout="@layout/fragment_film_details" />
+
+
+</navigation>
