@@ -107,7 +107,7 @@ class MoviesFragment : Fragment() {
                     Log.e("pop","filmModel.popularityl")
                     viewModel.listFilms.value!!.add(filmModel)
                 }
-
+//
                 try {
                     viewModel.listFilms.value =
                         (viewModel.listFilms.value!!.sortedBy { it.popularity.toDouble() }) as ArrayList<FilmsModel>
