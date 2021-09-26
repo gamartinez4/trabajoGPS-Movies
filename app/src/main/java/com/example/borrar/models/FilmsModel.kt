@@ -11,4 +11,7 @@ open class FilmsModel:RealmObject() {
     var imgUrl = ""
     var description = ""
     var realeseDate = ""
+    var popularity = ""
+    var vote = ""
+    var isFavourite = false
 }

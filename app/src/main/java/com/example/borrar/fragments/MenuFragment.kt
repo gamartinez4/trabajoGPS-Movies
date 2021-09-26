@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.example.borrar.Animations
 import com.example.borrar.R
 import com.example.borrar.viewModel.ViewModelClass
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,13 +35,15 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var db = FirebaseFirestore.getInstance()
-        db.collection("ApiKeys").document("1").get().addOnSuccessListener {
-            if(it!=null){
-                viewModel.keyGPS = it.get("gps").toString()
-                viewModel.keyMovies = it.get("movies").toString()
+        try {
+            var db = FirebaseFirestore.getInstance()
+            db.collection("ApiKeys").document("1").get().addOnSuccessListener {
+                if (it != null) {
+                    viewModel.keyGPS = it.get("gps").toString()
+                    viewModel.keyMovies = it.get("movies").toString()
+                }
             }
-        }
+        }catch(e:Exception){}
         val permissionCheck = ContextCompat.checkSelfPermission(
             requireContext(),
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -60,10 +63,10 @@ class MenuFragment : Fragment() {
         }
         Realm.init(context)
         peliculas.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.movies_fragment)
+            Navigation.findNavController(it).navigate(R.id.movies_fragment,null, Animations.options_slide_in)
         }
         gps.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.map_fragment)
+            Navigation.findNavController(it).navigate(R.id.map_fragment,null, Animations.options_slide_in)
         }
     }
 

@@ -20,6 +20,12 @@
         <item name="android:textColor">#898989</item>
     </style>
 
+    <style name="subtexto_solic_mini">
+        <item name="android:textSize">9sp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">#898989</item>
+    </style>
+
     <style name="mis_servici">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#004461</item>

@@ -18,23 +18,21 @@
         android:background="#BBBBBB">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal"
+            android:id="@+id/guideline_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.87" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.84" />
 
-
-        <!-- TODO: Update blank fragment layout -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/charging_movies"
@@ -49,15 +47,15 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/refresh_card"
-            android:layout_width="112dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="86dp"
             android:background="@drawable/card_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintHorizontal_bias="0.975"
             app:layout_constraintStart_toStartOf="@+id/recycler"
-            app:layout_constraintTop_toBottomOf="@+id/recycler"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.184" />
 
         <TextView
             android:id="@+id/refresh_title"
@@ -78,11 +76,11 @@
             android:layout_height="50dp"
             android:background="@drawable/card_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/refresh_card"
-            app:layout_constraintHorizontal_bias="0.226"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycler"
-            app:layout_constraintVertical_bias="0.503" />
+            app:layout_constraintEnd_toEndOf="@+id/refresh_card"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/refresh_card"
+            app:layout_constraintTop_toBottomOf="@+id/refresh_card"
+            app:layout_constraintVertical_bias="0.5" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_favourites_image"

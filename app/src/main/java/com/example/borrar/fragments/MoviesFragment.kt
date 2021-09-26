@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -31,6 +32,7 @@ class MoviesFragment : Fragment() {
     private val retrofitController: RetrofitController by inject()
     private val dialog: DialogPersonalized by inject()
     private var realm: Realm? = null
+    private var favouriteFilterActive = false
 
 
     override fun onCreateView(
@@ -40,6 +42,7 @@ class MoviesFragment : Fragment() {
         val binding: FragmentMoviesBinding=
         DataBindingUtil.inflate(inflater, R.layout.fragment_movies, container, false)
         binding.viewModel = viewModel
+        binding.activeFavourite = favouriteFilterActive
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -56,7 +59,24 @@ class MoviesFragment : Fragment() {
         if(realm!!.isEmpty)moviesRequest()
         else{
             viewModel.listFilms.value = realm!!.where<FilmsModel>().findAll().toList() as ArrayList<FilmsModel>
-            recycler.adapter = AdaptadorLista(viewModel,this)
+            try {
+                viewModel.listFilms.value =
+                    (viewModel.listFilms.value!!.sortedBy { it.popularity.toDouble() }) as ArrayList<FilmsModel>
+            }catch(e:Exception){ }
+            recycler.adapter = AdaptadorLista(viewModel,viewModel.listFilms.value!!)
+        }
+        refresh_card.setOnClickListener {
+            realm?.executeTransaction{it.where<FilmsModel>().findAll().deleteAllFromRealm()}
+            viewModel.listFilms.value = ArrayList()
+            moviesRequest()
+        }
+
+        filter_favourites_card.setOnClickListener {
+            favouriteFilterActive = !favouriteFilterActive
+           recycler.adapter = AdaptadorLista(
+               viewModel,
+               if(favouriteFilterActive)
+                   (viewModel.listFilms.value!!.filter { it.isFavourite }) as ArrayList<FilmsModel> else viewModel.listFilms.value!!)
         }
     }
 
@@ -81,10 +101,22 @@ class MoviesFragment : Fragment() {
                     filmModel.realeseDate = jsonObj.getString("release_date")
                     filmModel.title = jsonObj.getString("title")
                     filmModel.imgUrl = "https://image.tmdb.org/t/p/original${jsonObj.getString("backdrop_path")}"
+                    filmModel.popularity = jsonObj.getString("popularity")
+                    Log.e("pop","filmModel.popula2rity")
+                    filmModel.vote = jsonObj.getString("vote_average")
+                    Log.e("pop","filmModel.popularityl")
                     viewModel.listFilms.value!!.add(filmModel)
                 }
+
+                try {
+                    viewModel.listFilms.value =
+                        (viewModel.listFilms.value!!.sortedBy { it.popularity.toDouble() }) as ArrayList<FilmsModel>
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+
                 realm?.executeTransaction { it.insert(viewModel.listFilms.value)}
-                recycler.adapter = AdaptadorLista(viewModel,this)
+                recycler.adapter = AdaptadorLista(viewModel,viewModel.listFilms.value!!)
             } else {
                 dialog.contenido = "Hay un problema con la url, se esta retornando un codigo de respuesta al servicio incorrecto de origen desconocido"
                 dialog.showDialog()

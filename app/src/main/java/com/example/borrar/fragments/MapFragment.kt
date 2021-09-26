@@ -180,8 +180,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 viewModel.valCalulado.value!!.distancia = distancia
                 viewModel.valCalulado.value!!.tiempo = tiempo
 
-                try{Navigation.findNavController(distime).navigate(R.id.black_fragment)}
-                catch (e:Exception){}
+                //try{Navigation.findNavController(distime).navigate(R.id.black_fragment)}
+                //catch (e:Exception){}
 
             } else {
                 dialog.contenido = "Hay un problema con la url, se esta retornando un codigo de respuesta al servicio incorrecto de origen desconocido"
