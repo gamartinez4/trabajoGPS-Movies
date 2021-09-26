@@ -102,9 +102,7 @@ class MoviesFragment : Fragment() {
                     filmModel.title = jsonObj.getString("title")
                     filmModel.imgUrl = "https://image.tmdb.org/t/p/original${jsonObj.getString("backdrop_path")}"
                     filmModel.popularity = jsonObj.getString("popularity")
-                    Log.e("pop","filmModel.popula2rity")
                     filmModel.vote = jsonObj.getString("vote_average")
-                    Log.e("pop","filmModel.popularityl")
                     viewModel.listFilms.value!!.add(filmModel)
                 }
 //
