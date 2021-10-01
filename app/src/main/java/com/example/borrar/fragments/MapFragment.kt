@@ -79,7 +79,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 )
                 viewModel.ownCorSelected.value = true
             }else{
-                dialog.contenido = "No se ha podido conocer su ubicación, por favor verifique si esta habiliatada la opción de ubicación en su celular"
+                dialog.contenido = "Location not found. Please check in your device configuration the location permissions"
                 dialog.showDialog()
             }
         }
@@ -184,7 +184,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 //catch (e:Exception){}
 
             } else {
-                dialog.contenido = "Hay un problema con la url, se esta retornando un codigo de respuesta al servicio incorrecto de origen desconocido"
+                dialog.contenido = "Unexpected response code of the server, please check the url of the server"
                 dialog.showDialog()
             }
 
@@ -193,7 +193,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         },{
             charging_response.visibility=View.GONE
             charging_response.clearAnimation()
-            dialog.contenido = "La información no pudo ser recibida satisfactoriamente, revise su conexion a internet"
+            dialog.contenido = "Missing information response, please check the internet connection"
             dialog.showDialog()
 
         })

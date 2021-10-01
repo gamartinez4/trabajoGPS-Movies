@@ -116,7 +116,7 @@ class MoviesFragment : Fragment() {
                 realm?.executeTransaction { it.insert(viewModel.listFilms.value)}
                 recycler.adapter = AdaptadorLista(viewModel,viewModel.listFilms.value!!)
             } else {
-                dialog.contenido = "Hay un problema con la url, se esta retornando un codigo de respuesta al servicio incorrecto de origen desconocido"
+                dialog.contenido = "Unexpected response code of the server, please check the url of the server"
                 dialog.showDialog()
             }
             charging_movies.visibility=View.GONE
@@ -124,7 +124,7 @@ class MoviesFragment : Fragment() {
         },{
             charging_movies.visibility=View.GONE
             charging_movies.clearAnimation()
-            dialog.contenido = "La información no pudo ser recibida satisfactoriamente, revise su conexion a internet"
+            dialog.contenido = "Missing information response, please check the internet connection"
             dialog.showDialog()
         })
 

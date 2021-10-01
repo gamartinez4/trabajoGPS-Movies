@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.84" />
+            app:layout_constraintGuide_percent="0.86" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -47,8 +47,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/refresh_card"
-            android:layout_width="80dp"
-            android:layout_height="86dp"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
             android:background="@drawable/card_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,12 +57,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.184" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/refresh_title"
             style="@style/subtexto_solic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Refrescar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_sync_24"
             app:layout_constraintBottom_toBottomOf="@+id/refresh_card"
             app:layout_constraintEnd_toEndOf="@+id/refresh_card"
             app:layout_constraintStart_toStartOf="@+id/refresh_card"
